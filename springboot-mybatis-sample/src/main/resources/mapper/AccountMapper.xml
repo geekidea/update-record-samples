@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2019-2029 geekidea(https://github.com/geekidea)
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.geekidea.updaterecord.samples.mapper.AccountMapper">
+
+    <select id="getByUserId" resultType="io.geekidea.updaterecord.samples.entity.Account">
+        select id, user_id, balance, version, create_time, update_time
+        from tb_account
+        where user_id = #{userId}
+    </select>
+
+    <update id="updateById" parameterType="io.geekidea.updaterecord.samples.entity.Account">
+        update tb_account
+        set balance     = #{balance},
+            version     = version + 1,
+            update_time = #{updateTime}
+        where id = #{id}
+          and version = #{version}
+    </update>
+
+</mapper>
