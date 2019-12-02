@@ -49,7 +49,7 @@ public class UpdateRecordAop extends UpdateRecordAopSupport {
     /**
      * 切点
      */
-    private static final String POINTCUT = "execution(public * io.geekidea.updaterecord..controller..*.*(..))";
+    private static final String POINTCUT = "@annotation(io.geekidea.updaterecord.annotation.UpdateRecord)";
 
     /**
      * 方法执行之前
